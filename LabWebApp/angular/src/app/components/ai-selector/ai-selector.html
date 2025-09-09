@@ -1,0 +1,7 @@
+<div class="selector-container">
+  <label for="aiService">Seleziona il servizio AI:</label>
+  <select id="aiService" (change)="onSelect($event)">
+    <option value="">-- scegli un servizio --</option>
+    <option *ngFor="let s of services" [value]="s">{{ s }}</option>
+  </select>
+</div>

@@ -1,1 +1,5 @@
-<p>home works!</p>
+<h2>Benvenuto nella WebApp AI</h2>
+
+<app-ai-selector (serviceSelected)="onServiceSelected($event)"></app-ai-selector>
+
+<p *ngIf="selectedService">🔹 Servizio scelto: {{ selectedService }}</p>

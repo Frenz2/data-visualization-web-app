@@ -1,5 +1,27 @@
-<h2>Benvenuto nella WebApp AI</h2>
 
-<app-ai-selector (serviceSelected)="onServiceSelected($event)"></app-ai-selector>
 
-<p *ngIf="selectedService">🔹 Servizio scelto: {{ selectedService }}</p>
+<div class="home-container">
+  <h1 class="title">AI Service Dashboard</h1>
+  <p class="subtitle">Seleziona un servizio AI e carica il tuo file</p>
+
+  <!-- Selettore AI -->
+  <section class="card">
+    <h2>1. Scegli il servizio AI</h2>
+    <app-ai-selector (serviceSelected)="onServiceSelected($event)"></app-ai-selector>
+    <p *ngIf="selectedService">🔹 Servizio scelto: {{ selectedService }}</p>
+  </section>
+
+  <!-- Uploader -->
+  <section class="card">
+    <h2>2. Carica il file</h2>
+    <input type="file"  />
+  </section>
+
+  <!-- Risultato -->
+  <section class="card result" >
+    <h2>3. Risultato</h2>
+    <div class="result-view">
+     
+    </div>
+  </section>
+</div>

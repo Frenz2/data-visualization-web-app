@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  display: block;
+  min-height: 100vh; // prende tutta l’altezza
+  background: linear-gradient(
+    135deg,
+    #ff9a9e,   /* rosa */
+    #fad0c4,   /* rosa chiaro */
+    #a18cd1,   /* viola */
+    #fbc2eb,   /* rosa pastello */
+    #8ec5fc,   /* celeste */
+    #6a82fb    /* blu */
+  );
+  background-size: 400% 400%; /* per animazione smooth */
+  animation: gradientMove 15s ease infinite;
+}
+
+/* Animazione leggera */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

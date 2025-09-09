@@ -17,11 +17,9 @@
     <app-file-uploader (fileUploaded)="onFileUploaded($event)"></app-file-uploader>
   </section>
 
-  <!-- Risultato -->
-  <!-- <section class="card result" >
-    <h2>3. Risultato</h2>
-    <div class="result-view">
-     
-    </div>
-  </section> -->
+  <section class="card" *ngIf="fileUploaded">
+    <h2>3. Seleziona funzionalità</h2>
+      <app-process-selector (processSelected)="onProcessSelected($event)"></app-process-selector>
+  </section>
+
 </div>

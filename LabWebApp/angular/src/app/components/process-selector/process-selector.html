@@ -1,0 +1,9 @@
+<div class="process-container">
+  <div class="process-card" *ngFor="let p of processes" (click)="processSelected.emit(p.name)">
+    <div class="icon">{{ p.icon }}</div>
+    <div class="info">
+      <h3>{{ p.name }}</h3>
+      <p>{{ p.description }}</p>
+    </div>
+  </div>
+</div>

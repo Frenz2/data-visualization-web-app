@@ -1,0 +1,9 @@
+# Node
+node_modules/
+
+# Angular
+angular/dist/
+.angular/
+
+# Env files
+*.env

@@ -22,4 +22,11 @@
       <app-process-selector (processSelected)="onProcessSelected($event)"></app-process-selector>
   </section>
 
+  <section class="card" *ngIf="selectedProcess">
+    <h2>4. Avvia funzionalità</h2>
+    <div class="button-container">
+      <app-start-button (clickButton)="startProcess()"> </app-start-button>
+    </div>
+  </section>
+
 </div>

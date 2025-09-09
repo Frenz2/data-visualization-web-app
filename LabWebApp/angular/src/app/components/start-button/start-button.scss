@@ -1,0 +1,31 @@
+.primary-button {
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 50px;   // rotondo
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #8ec5fc, #6a82fb);
+  background-size: 400% 400%;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

@@ -14,7 +14,7 @@
   <!-- Uploader -->
   <section class="card" *ngIf="selectedService">
     <h2>2. Carica il file</h2>
-    <input type="file"  />
+    <app-file-uploader (fileUploaded)="onFileUploaded($event)"></app-file-uploader>
   </section>
 
   <!-- Risultato -->

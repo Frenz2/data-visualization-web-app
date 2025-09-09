@@ -1,0 +1,37 @@
+.upload-container {
+  border: 2px dashed #3498db;
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: 0.3s all;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+
+  &.drag-over {
+    border-color: #9b59b6;
+    background: rgba(155, 89, 182, 0.1);
+  }
+
+  .upload-content {
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .upload-button {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: #3498db;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: 600;
+
+      &:hover {
+        background: #2980b9;
+      }
+    }
+  }
+}

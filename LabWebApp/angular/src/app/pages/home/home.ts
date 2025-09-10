@@ -7,7 +7,7 @@ import { StartButton } from '../../components/start-button/start-button';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule,AiSelector,FileUploader,ProcessSelector,StartButton],
+  imports: [CommonModule,FileUploader,ProcessSelector,StartButton],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })

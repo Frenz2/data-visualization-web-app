@@ -36,3 +36,12 @@
     font-size: 0.85rem;
   }
 }
+ .process-card.selected {
+  background: linear-gradient(135deg, #ff9a9e, #a18cd1, #8ec5fc, #6a82fb);
+  color: white;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+
+  h3, p {
+    color: #fff;
+  }
+}

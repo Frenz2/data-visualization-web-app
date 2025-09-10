@@ -2,28 +2,28 @@
 
 <div class="home-container">
   <h1 class="title">AI Service Dashboard</h1>
-  <p class="subtitle">Seleziona un servizio AI e carica il tuo file</p>
+  <p class="subtitle">Benvenuto! Carica un file e seleziona un servizio AI 😊</p>
 
   <!-- Selettore AI -->
-  <section class="card">
+  <!-- <section class="card">
     <h2>1. Scegli il servizio AI</h2>
     <app-ai-selector (serviceSelected)="onServiceSelected($event)"></app-ai-selector>
     <p *ngIf="selectedService">🔹 Servizio scelto: {{ selectedService }}</p>
-  </section>
+  </section> -->
 
   <!-- Uploader -->
-  <section class="card" *ngIf="selectedService">
-    <h2>2. Carica il file</h2>
+  <section class="card">
+    <h2>1. Carica il file</h2>
     <app-file-uploader (fileUploaded)="onFileUploaded($event)"></app-file-uploader>
   </section>
 
   <section class="card" *ngIf="fileUploaded">
-    <h2>3. Seleziona funzionalità</h2>
+    <h2>2. Seleziona funzionalità</h2>
       <app-process-selector (processSelected)="onProcessSelected($event)"></app-process-selector>
   </section>
 
   <section class="card" *ngIf="selectedProcess">
-    <h2>4. Avvia funzionalità</h2>
+    <h2>3. Avvia funzionalità</h2>
     <div class="button-container">
       <app-start-button (clickButton)="startProcess()"> </app-start-button>
     </div>

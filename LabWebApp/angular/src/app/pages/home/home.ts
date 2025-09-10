@@ -13,13 +13,9 @@ import { StartButton } from '../../components/start-button/start-button';
 })
 export class Home {
 
-  selectedService = '';
   fileUploaded: File | null = null;
   selectedProcess:string = '';
 
-  onServiceSelected(service: string) {
-    this.selectedService = service;
-  }
   onFileUploaded(file:File){
     this.fileUploaded=file;
   }

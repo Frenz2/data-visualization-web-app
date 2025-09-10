@@ -25,7 +25,7 @@
   <section class="card" *ngIf="selectedProcess">
     <h2>3. Avvia funzionalità</h2>
     <div class="button-container">
-      <app-start-button (clickButton)="startProcess()"> </app-start-button>
+      <app-start-button [nomeServizio]="selectedProcess" (clickButton)="startProcess()"> </app-start-button>
     </div>
   </section>
 

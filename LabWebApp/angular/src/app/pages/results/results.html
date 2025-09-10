@@ -1,0 +1,25 @@
+<div class="results-container">
+  <div class="result-card-main">
+    <div class="card-header">
+      <h2>Risultati Service: {{serviceName}}</h2>
+      <button class="toggle-button" (click)="toggleView()">
+        {{ showDashboard ? 'Visualizza Risultato' : 'Visualizza Dashboard' }}
+      </button>
+    </div>
+
+    <div *ngIf="!showDashboard" class="simple-result">
+      <p>{{ aiResult }}</p>
+    </div>
+
+    <div *ngIf="showDashboard" class="dashboard">
+      <div class="dashboard-card" *ngFor="let stat of stats">
+        <h3>{{ stat.name }}</h3>
+        <p>{{ stat.value }}</p>
+        <div class="chart-container">
+        </div>
+      </div>
+    </div>
+
+    <button routerLink="/" class="primary-button">Torna alla Home</button>
+  </div>
+</div>

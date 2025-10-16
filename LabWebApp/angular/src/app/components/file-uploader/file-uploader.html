@@ -12,6 +12,27 @@
         <p>✅ File caricato:</p>
         <p><strong>Nome:</strong> {{ fileSelected.name }}</p>
         <p><strong>Dimensione:</strong> {{ (fileSelected.size / 1024).toFixed(2) }} KB</p>
-    </div>
-</div>
+        <p *ngIf="fileAudioDuration !== null"><strong>Durata:</strong> {{ formatDuration(fileAudioDuration) }} minuti</p>
+        
+        
+        </div>
+        <div *ngIf="selectedProcess === 'Whisper'" class="result-whisper">
+            <button *ngIf="fileSelected" [disabled]="isLoading"  class="custom-button" (click)="uploadToWhisper()" >
+                Avvia {{selectedProcess}}
+            </button>
+            <p>
+                {{ isLoading ? 'Caricamento...⏳' : '' }}
+            </p>
+            
+        </div>
+        <div *ngIf="selectedProcess === 'OCR'" class="result-OCR">
+            <button *ngIf="fileSelected" [disabled]="isLoading"  class="custom-button" (click)="uploadToOCR()" >
+                Avvia {{selectedProcess}}
+            </button>
+            <p>
+                {{ isLoading ? 'Caricamento...⏳' : '' }}
+            </p>
+            
+        </div>
+        </div>
 

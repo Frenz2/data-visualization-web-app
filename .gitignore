@@ -7,3 +7,6 @@ angular/dist/
 
 # Env files
 *.env
+
+# Venv
+.venv/

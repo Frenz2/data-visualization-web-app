@@ -3,21 +3,32 @@ import { AiSelector } from '../../components/ai-selector/ai-selector';
 import { CommonModule } from '@angular/common';
 import { FileUploader } from '../../components/file-uploader/file-uploader';
 import { ProcessSelector } from '../../components/process-selector/process-selector';
-import { StartButton } from '../../components/start-button/start-button';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule,FileUploader,ProcessSelector,StartButton],
+  standalone: true,
+  imports: [CommonModule,FileUploader,ProcessSelector],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
 export class Home {
 
   fileUploaded: File | null = null;
+  transcription: string = '';
+  resultOCR:string='';
   selectedProcess:string = '';
+  isResultReady:boolean = false;
 
   onFileUploaded(file:File){
     this.fileUploaded=file;
+  }
+  onTranscriptionReceived(result:string){
+    this.transcription=result;
+    this.isResultReady=true;
+  }
+  onOcrResultReceived(result:string){
+    this.resultOCR=result;
+    this.isResultReady=true;
   }
   onProcessSelected(processName: string) {
   this.selectedProcess = processName;

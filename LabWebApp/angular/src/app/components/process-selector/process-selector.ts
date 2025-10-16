@@ -25,8 +25,9 @@ export class ProcessSelector {
     { name: 'Translate', icon: '🌐', description: 'Traduci testo in un’altra lingua' },
     { name: 'Summarize', icon: '📝', description: 'Crea un riassunto del testo' },
     { name: 'Text To Speech', icon: '🔊', description: 'Converti testo in voce' },
-    { name: 'Speech To Text', icon: '🎤', description: 'Converti voce in testo' },
-    { name: 'Image To Text', icon: '📷', description: 'Estrai testo da immagini' }
+    { name: 'Whisper', icon: '🎤', description: 'Converti voce in testo' },
+    { name: 'Image To Text', icon: '📷', description: 'Descrizione immagini' },
+    { name: 'OCR', icon: '📷', description: 'Estrai testo da immagini con testo' }
   ];
 
   selectProcess(processName: string) {

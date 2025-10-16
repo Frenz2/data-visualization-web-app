@@ -2,7 +2,10 @@
 
 <div class="home-container">
   <h1 class="title">AI Service Dashboard</h1>
-  <p class="subtitle">Benvenuto! Carica un file e seleziona un servizio AI 😊</p>
+  <div *ngIf="!isResultReady">
+    <p class="subtitle">Benvenuto! Per iniziare seleziona un servizio AI 😊</p>
+  </div>
+  
 
   <!-- Selettore AI -->
   <!-- <section class="card">
@@ -11,22 +14,26 @@
     <p *ngIf="selectedService">🔹 Servizio scelto: {{ selectedService }}</p>
   </section> -->
 
-  <!-- Uploader -->
-  <section class="card">
-    <h2>1. Carica il file</h2>
-    <app-file-uploader (fileUploaded)="onFileUploaded($event)"></app-file-uploader>
-  </section>
 
-  <section class="card" *ngIf="fileUploaded">
-    <h2>2. Seleziona funzionalità</h2>
+  <section class="card" *ngIf="!isResultReady">
+    <h2>1. Seleziona servizio</h2>
       <app-process-selector (processSelected)="onProcessSelected($event)"></app-process-selector>
   </section>
 
-  <section class="card" *ngIf="selectedProcess">
-    <h2>3. Avvia funzionalità</h2>
-    <div class="button-container">
-      <app-start-button [nomeServizio]="selectedProcess" (clickButton)="startProcess()"> </app-start-button>
-    </div>
+   <section class="card" *ngIf="selectedProcess && !isResultReady">
+    <h2>2. Carica il file</h2>
+    <app-file-uploader (fileUploaded)="onFileUploaded($event)" [selectedProcess]="selectedProcess" (transcriptionReceived)="onTranscriptionReceived($event)" (ocrResultReceived)="onOcrResultReceived($event)"></app-file-uploader>
+    
   </section>
+
+  <section class="card" *ngIf="isResultReady && selectedProcess === 'Whisper'">
+    <h2>3. Risultato</h2>
+    {{transcription}} 
+  </section>
+  <section class="card" *ngIf="isResultReady && selectedProcess === 'OCR'">
+    <h2>3. Risultato</h2>
+    {{resultOCR}} 
+  </section>
+
 
 </div>

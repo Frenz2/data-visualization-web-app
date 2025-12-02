@@ -3,11 +3,12 @@ import { AiSelector } from '../../components/ai-selector/ai-selector';
 import { CommonModule } from '@angular/common';
 import { FileUploader } from '../../components/file-uploader/file-uploader';
 import { ProcessSelector } from '../../components/process-selector/process-selector';
+import { DashboardComponent } from '../../components/dashboard/dashboard/dashboard';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,FileUploader,ProcessSelector],
+  imports: [CommonModule,FileUploader,ProcessSelector,DashboardComponent],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })

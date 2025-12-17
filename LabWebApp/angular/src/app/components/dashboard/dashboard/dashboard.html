@@ -4,6 +4,7 @@
   <!-- Input per testo -->
   <div class="input-section">
     <textarea
+      style="width: 750px; height: 180px;"
       [(ngModel)]="inputText"
       rows="4"
       placeholder="Inserisci testo da analizzare per generare grafici..."
@@ -35,7 +36,7 @@
 
   <!-- Bar chart trend -->
   <div *ngIf="dashboardData?.trend?.length">
-    <h3>Andamento nel Tempo</h3>
+    <h3>Andamento nel Tempo (Bar Chart)</h3>
     <apx-chart
       [series]="trendChartOptions.series"
       [chart]="trendChartOptions.chart"
@@ -44,6 +45,19 @@
       [stroke]="trendChartOptions.stroke"
       [dataLabels]="trendChartOptions.dataLabels"
       [title]="trendChartOptions.title"
+      [colors]="['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0']"
+    ></apx-chart>
+
+    <h3>Andamento nel Tempo (Line Chart)</h3>
+    <apx-chart
+      [series]="lineChartOptions.series"
+      [chart]="lineChartOptions.chart"
+      [xaxis]="lineChartOptions.xaxis"
+      [yaxis]="lineChartOptions.yaxis"
+      [stroke]="lineChartOptions.stroke"
+      [dataLabels]="lineChartOptions.dataLabels"
+      [title]="lineChartOptions.title"
+      [colors]="['#008FFB', '#00E396', '#FEB019', '#FF4560', '#775DD0']"
     ></apx-chart>
   </div>
 </div>

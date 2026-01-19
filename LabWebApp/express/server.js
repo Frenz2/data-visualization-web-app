@@ -117,6 +117,71 @@ app.post('/api/ocr', upload.single('image'), async (req, res) => {
     });
   }
 });
+// 📊 CHART2TEXT (OpenAI) - Inoltra immagine al microservizio Chart2Text
+app.post('/api/chart2text', upload.single('image'), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'Nessun file immagine caricato' });
+  }
+
+  const filePath = req.file.path;
+
+  try {
+    const form = new FormData();
+    form.append('image', fs.createReadStream(filePath));
+
+    // Microservizio Chart2Text locale (NODE)
+    const response = await axios.post('http://localhost:5005/chart2text', form, {
+      headers: form.getHeaders(),
+      timeout: 60000
+    });
+
+    res.json(response.data);
+  } catch (err) {
+    console.error("❌ Errore chiamando Chart2Text:", err.response?.data || err.message);
+    res.status(500).json({
+      error: "Errore durante la chiamata Chart2Text",
+      detail: err.response?.data || err.message,
+    });
+  } finally {
+    fs.unlinkSync(filePath);
+  }
+});
+
+
+// 📸 CAPTION - Inoltra immagine al microservizio di Image Captioning
+app.post('/api/caption', upload.single('image'), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'Nessun file immagine caricato' });
+  }
+
+  const filePath = req.file.path;
+
+  try {
+    // prepara form-data da inviare al microservizio caption
+    const form = new FormData();
+    form.append('image', fs.createReadStream(filePath));
+
+    // invia la richiesta al microservizio caption (porta 5001)
+    const response = await axios.post('http://localhost:5001/caption', form, {
+      headers: form.getHeaders(),
+      timeout: 60000
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error('❌ Errore chiamando Caption:', error.response?.data || error.message);
+    res.status(500).json({
+      error: 'Errore durante la chiamata Caption',
+      detail: error.response?.data || error.message
+    });
+  } finally {
+    // elimina il file temporaneo
+    fs.unlink(filePath, (err) => {
+      if (err) console.warn('Errore eliminando file tmp:', err.message);
+    });
+  }
+});
+
 
 //Text-To-Graph
 // 🧠 OPENAI - Function Calling per estrarre dati per dashboard

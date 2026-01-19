@@ -4,27 +4,9 @@ import { HttpClient, HttpEvent, HttpEventType, HttpParams } from '@angular/commo
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-export interface ChartDataItem {
-  label: string;
-  value: number;
-}
-
-export interface TrendPoint {
-  product: string;
-  value: number;
-  time_period: string;
-}
-
-export interface DashboardData {
-  chartData: ChartDataItem[];
-  trend?: TrendPoint[]; // ora è un array di punti temporali
-}
-
-
 @Injectable({
   providedIn: 'root'
 })
-
 export class ApiService {
   private baseUrl = 'http://localhost:3000';
   private base = 'http://localhost:3000/api';
@@ -52,17 +34,13 @@ export class ApiService {
     fd.append('image', file, file.name);
     return this.http.post(`${this.baseUrl}/api/ocr`, fd);
   }
+  //TEXT2CHART
+  chart2text(file: File): Observable<any> {
+  const fd = new FormData();
+  fd.append('image', file, file.name);
 
-  //Text-To-Chart
-  private apiUrl = 'http://localhost:3000/api/ai/dashboard'; 
-
-  extractDashboardData(text: string): Observable<DashboardData> {
-  return this.http.post<{ok: boolean; data: DashboardData}>(
-    this.apiUrl,
-    { text }
-  ).pipe(
-    map(resp => resp.data) // <-- estrai solo la parte 'data'
-  );
+  return this.http.post(`${this.baseUrl}/api/chart2text`, fd);
 }
+
 
 }

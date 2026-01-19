@@ -48,9 +48,67 @@
 
 .button-container {
   display: flex;
-  justify-content: center; 
-  margin: 2rem 0;          
+  justify-content: center;
+  margin: 2rem 0;
 }
+
+.ocr-text {
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+.image-preview {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+details {
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+summary {
+  font-weight: 600;
+  padding: 0.5rem 0;
+}
+
+.result-text {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.summary {
+  background: #eef2ff;
+  font-style: italic;
+}
+
+.json-box {
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.file-path {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+
 
 
 

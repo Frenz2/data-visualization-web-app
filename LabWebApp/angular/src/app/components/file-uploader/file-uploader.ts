@@ -15,12 +15,13 @@ export class FileUploader {
   @Output() fileUploaded = new EventEmitter<File>();
   @Output() transcriptionReceived = new EventEmitter<string>(); // trascrizione in output
   @Output() ocrResultReceived = new EventEmitter<string>();
+  @Output() chart2TextReceived = new EventEmitter<any>();
   @Input() selectedProcess!: string;
-  
+
   isDragOver = false;
   fileSelected: File | null = null;
   isLoading = false;      // per gestire loading
-  transcription: string = ''; 
+  transcription: string = '';
   fileAudioDuration: number | null = null;
 
   constructor(private http: HttpClient, private api: ApiService) {}
@@ -33,9 +34,14 @@ export class FileUploader {
     if (target.files && target.files.length) {
       this.fileSelected = target.files[0];
       this.fileUploaded.emit(this.fileSelected);
+      if (this.selectedProcess === 'Whisper') {
       this.fileAudioDuration = await this.getAudioDuration(this.fileSelected);
+    } else {
+      this.fileAudioDuration = null; // nessuna durata per altri servizi
+}
+
     }
-    
+
   }
 
   onDrop(event: DragEvent) {
@@ -67,14 +73,14 @@ export class FileUploader {
       .subscribe({
         next: (res) => {
           this.transcription = res.text;
-          this.transcriptionReceived.emit(this.transcription); 
+          this.transcriptionReceived.emit(this.transcription);
         },
         error: (err) => {
           console.error('Errore durante la trascrizione:', err);
         }
       });
   }
-  
+
   // Chiamata al microservizio OCR
   uploadToOCR() {
     if (!this.fileSelected) return;
@@ -87,13 +93,31 @@ export class FileUploader {
       .subscribe({
         next: (res: any) => {
           this.transcription = res.text;
-          this.ocrResultReceived.emit(this.transcription); 
+          this.ocrResultReceived.emit(this.transcription);
         },
         error: (err) => {
           console.error('Errore durante OCR:', err);
         }
       });
   }
+  // Chiamata al microservizio Chart2Text
+  uploadToChart2Text() {
+  if (!this.fileSelected) return;
+
+  this.isLoading = true;
+
+  this.api.chart2text(this.fileSelected)
+    .pipe(finalize(() => this.isLoading = false))
+    .subscribe({
+      next: (res: any) => {
+        const description = res?.result?.description ?? "Nessuna descrizione trovata";
+        this.chart2TextReceived.emit(res);
+
+      },
+      error: (err) => console.error("Errore Chart2Text:", err)
+    });
+}
+
 
   getAudioDuration(file: File): Promise<number> {
     return new Promise((resolve, reject) => {

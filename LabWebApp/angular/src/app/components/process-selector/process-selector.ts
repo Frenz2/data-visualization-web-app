@@ -27,6 +27,7 @@ export class ProcessSelector {
     { name: 'Text To Speech', icon: '🔊', description: 'Converti testo in voce' },
     { name: 'Whisper', icon: '🎤', description: 'Converti voce in testo' },
     { name: 'Image To Text', icon: '📷', description: 'Descrizione immagini' },
+    { name: 'Chart2Text', icon: '📊', description: 'Descrizione grafici' },
     { name: 'OCR', icon: '📷', description: 'Estrai testo da immagini con testo' }
   ];
 

@@ -18,6 +18,7 @@ export class Home {
   transcription: string = '';
   resultOCR:string='';
   selectedProcess:string = '';
+  resultChart2Text: any=null;
   isResultReady:boolean = false;
 
   onFileUploaded(file:File){
@@ -31,10 +32,20 @@ export class Home {
     this.resultOCR=result;
     this.isResultReady=true;
   }
+  onChart2TextReceived(result: any) {
+    this.resultChart2Text = result;
+    this.isResultReady = true;
+  }
   onProcessSelected(processName: string) {
   this.selectedProcess = processName;
   console.log('Process selected:', processName);
-}
+  }
+
+  get uploadedImageUrl(): string | null {
+    if (!this.fileUploaded) return null;
+    return URL.createObjectURL(this.fileUploaded);
+  }
+
 
 startProcess() {
 

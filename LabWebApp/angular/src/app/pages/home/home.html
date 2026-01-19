@@ -5,7 +5,7 @@
   <div *ngIf="!isResultReady">
     <p class="subtitle">Benvenuto! Per iniziare seleziona un servizio AI 😊</p>
   </div>
-  
+
 
   <!-- Selettore AI -->
   <!-- <section class="card">
@@ -22,21 +22,61 @@
 
    <section class="card" *ngIf="selectedProcess && !isResultReady">
     <h2>2. Carica il file</h2>
-    <app-file-uploader (fileUploaded)="onFileUploaded($event)" [selectedProcess]="selectedProcess" (transcriptionReceived)="onTranscriptionReceived($event)" (ocrResultReceived)="onOcrResultReceived($event)"></app-file-uploader>
-    
+    <app-file-uploader
+      (fileUploaded)="onFileUploaded($event)"
+      [selectedProcess]="selectedProcess"
+      (transcriptionReceived)="onTranscriptionReceived($event)"
+      (ocrResultReceived)="onOcrResultReceived($event)"
+      (chart2TextReceived)="onChart2TextReceived($event)">
+
+    </app-file-uploader>
+
   </section>
 
   <section class="card" *ngIf="isResultReady && selectedProcess === 'Whisper'">
     <h2>3. Risultato</h2>
-    {{transcription}} 
+    {{transcription}}
   </section>
   <section class="card" *ngIf="isResultReady && selectedProcess === 'OCR'">
     <h2>3. Risultato</h2>
-    {{resultOCR}} 
+    {{resultOCR}}
+  </section>
+  <section class="card" *ngIf="isResultReady && selectedProcess === 'Chart2Text'">
+    <h2>3. Risultato</h2>
+    <!-- IMMAGINE -->
+    <div class="image-preview" *ngIf="uploadedImageUrl">
+      <img [src]="uploadedImageUrl" alt="Immagine caricata" />
+    </div>
+
+    <!-- DROPDOWN TESTI -->
+    <details>
+      <summary>🧠 Descrizione (Italiano)</summary>
+      <p class="result-text">
+        {{ resultChart2Text.caption_it }}
+      </p>
+    </details>
+    <details>
+      <summary>🌍 Description (English)</summary>
+      <p class="result-text">
+        {{ resultChart2Text.caption_en }}
+      </p>
+    </details>
+    <details>
+      <summary>✂️ Riassunto</summary>
+      <p class="result-text summary">
+        {{ resultChart2Text.summary_it }}
+      </p>
+    </details>
+    <p class="file-path">
+      💾 Salvato in: <code>{{ resultChart2Text.saved_file }}</code>
+    </p>
+
+
   </section>
   <section>
     <app-dashboard></app-dashboard>
   </section>
+
 
 
 </div>

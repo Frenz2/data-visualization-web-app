@@ -3,13 +3,12 @@
 
   <!-- Input per testo -->
   <div class="input-section">
-    <textarea
-      style="width: 750px; height: 180px;"
+    <textarea 
       [(ngModel)]="inputText"
-      rows="4"
+      rows="8"
       placeholder="Inserisci testo da analizzare per generare grafici..."
     ></textarea>
-    <button (click)="analyzeText()" [disabled]="loading || !inputText.trim()">Analizza</button>
+    <button class="custom-button" (click)="analyzeText()" [disabled]="loading || !inputText.trim()">Analizza</button>
   </div>
 
   <!-- Loading -->

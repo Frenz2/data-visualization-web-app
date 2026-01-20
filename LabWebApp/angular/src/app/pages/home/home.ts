@@ -20,6 +20,14 @@ export class Home {
   selectedProcess:string = '';
   resultChart2Text: any=null;
   isResultReady:boolean = false;
+  descIT:string='';
+  descENG:string='';
+  summaryIT:string='';
+
+  goHome() {
+  window.location.reload();
+}
+
 
   onFileUploaded(file:File){
     this.fileUploaded=file;
@@ -35,6 +43,12 @@ export class Home {
   onChart2TextReceived(result: any) {
     this.resultChart2Text = result;
     this.isResultReady = true;
+    this.descIT = result.caption_it.replace(/####?/g, '\n');
+    this.descENG = result.caption_en.replace(/####?/g, '\n');
+    this.summaryIT = result.summary_it.replace(/####?/g, '\n');
+  }
+  onResponseTTCReceived(result:boolean){
+    this.isResultReady=true;
   }
   onProcessSelected(processName: string) {
   this.selectedProcess = processName;

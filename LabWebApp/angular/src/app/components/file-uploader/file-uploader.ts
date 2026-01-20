@@ -118,6 +118,22 @@ export class FileUploader {
     });
 }
 
+uploadToImage2Text() {
+  if (!this.fileSelected) return;
+
+  this.isLoading = true;
+
+  this.api.image2text(this.fileSelected)
+    .pipe(finalize(() => this.isLoading = false))
+    .subscribe({
+      next: (res: any) => {
+        const description = res?.result?.description ?? "Nessuna descrizione trovata";
+        this.chart2TextReceived.emit(res);
+
+      },
+      error: (err) => console.error("Errore Image2Text:", err)
+    });
+}
 
   getAudioDuration(file: File): Promise<number> {
     return new Promise((resolve, reject) => {

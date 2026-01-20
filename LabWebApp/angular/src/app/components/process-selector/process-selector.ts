@@ -21,14 +21,16 @@ export class ProcessSelector {
 
   selectedProcess?:string;
 
+
+
   processes: Process[] = [
-    { name: 'Translate', icon: '🌐', description: 'Traduci testo in un’altra lingua' },
-    { name: 'Summarize', icon: '📝', description: 'Crea un riassunto del testo' },
-    { name: 'Text To Speech', icon: '🔊', description: 'Converti testo in voce' },
+    //{ name: 'Summarize', icon: '📝', description: 'Crea un riassunto del testo' },
+    //{ name: 'Text To Speech', icon: '🔊', description: 'Converti testo in voce' },
     { name: 'Whisper', icon: '🎤', description: 'Converti voce in testo' },
-    { name: 'Image To Text', icon: '📷', description: 'Descrizione immagini' },
-    { name: 'Chart2Text', icon: '📊', description: 'Descrizione grafici' },
-    { name: 'OCR', icon: '📷', description: 'Estrai testo da immagini con testo' }
+    { name: 'Image-To-Text', icon: '📷', description: 'Descrizione immagini' },
+    { name: 'OCR', icon: '📷', description: 'Estrai testo da immagini con testo' },
+    { name: 'Chart-To-Text', icon: '📊', description: 'Descrizione grafici' },
+    { name: 'Text-To-Chart', icon: '📊', description: 'Traduci testo in grafici' }
   ];
 
   selectProcess(processName: string) {

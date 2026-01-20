@@ -117,7 +117,8 @@ app.post('/api/ocr', upload.single('image'), async (req, res) => {
     });
   }
 });
-// 📊 CHART2TEXT (OpenAI) - Inoltra immagine al microservizio Chart2Text
+
+// 📊 CHART2TEXT - IMMAGE2TEXT (OpenAI) - Inoltra immagine al microservizio Chart2Text
 app.post('/api/chart2text', upload.single('image'), async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'Nessun file immagine caricato' });
@@ -146,6 +147,41 @@ app.post('/api/chart2text', upload.single('image'), async (req, res) => {
     fs.unlinkSync(filePath);
   }
 });
+
+app.post('/api/image2text', upload.single('image'), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'Nessun file immagine caricato' });
+  }
+
+  const filePath = req.file.path;
+
+  try {
+    const form = new FormData();
+    form.append('image', fs.createReadStream(filePath));
+
+    // Microservizio Image2Text locale (NODE)
+    const response = await axios.post(
+      'http://localhost:5005/image2text',
+      form,
+      {
+        headers: form.getHeaders(),
+        timeout: 60000
+      }
+    );
+
+    res.json(response.data);
+
+  } catch (err) {
+    console.error("❌ Errore chiamando Image2Text:", err.response?.data || err.message);
+    res.status(500).json({
+      error: "Errore durante la chiamata Image2Text",
+      detail: err.response?.data || err.message,
+    });
+  } finally {
+    fs.unlinkSync(filePath);
+  }
+});
+
 
 
 // 📸 CAPTION - Inoltra immagine al microservizio di Image Captioning

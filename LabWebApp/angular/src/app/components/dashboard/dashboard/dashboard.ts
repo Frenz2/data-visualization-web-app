@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgApexchartsModule } from 'ng-apexcharts';
@@ -41,6 +41,8 @@ export type TrendChartOptions = {
   styleUrls: ['./dashboard.scss']
 })
 export class DashboardComponent {
+
+  @Output() responseTTCReceived = new EventEmitter<any>();
   inputText: string = '';
   dashboardData?: DashboardData;
   loading: boolean = false;
@@ -108,6 +110,7 @@ lineChartOptions: {
         this.dashboardData = data;
         this.updateCharts(data);
         this.loading = false;
+        this.responseTTCReceived.emit(true);
       },
       error: () => {
         this.error = 'Errore chiamando il microservizio';

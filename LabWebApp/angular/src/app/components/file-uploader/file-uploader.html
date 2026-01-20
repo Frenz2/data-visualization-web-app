@@ -35,7 +35,7 @@
             
         </div>
         <!-- CHART2TEXT -->
-        <div *ngIf="selectedProcess === 'Chart2Text'" class="result-chart2text">
+        <div *ngIf="selectedProcess === 'Chart-To-Text'" class="result-chart2text">
             <button 
                 *ngIf="fileSelected" 
                 [disabled]="isLoading" 
@@ -46,13 +46,17 @@
             </button>
             <p>{{ isLoading ? 'Caricamento...⏳' : '' }}</p>
         </div>
-        <div *ngIf="selectedProcess === 'Image To Text'" class="result-chart2text">
-  <button *ngIf="fileSelected" [disabled]="isLoading" class="custom-button"
-          (click)="uploadToChart2Text()">
-    Avvia {{selectedProcess}}
-  </button>
-  <p>{{ isLoading ? 'Caricamento...⏳' : '' }}</p>
-</div>
+        <div *ngIf="selectedProcess === 'Image-To-Text'" class="result-chart2text">
+            <button 
+                *ngIf="fileSelected" 
+                [disabled]="isLoading" 
+                class="custom-button" 
+                (click)="uploadToImage2Text()">
 
+                Avvia {{ selectedProcess }}
+            </button>
+            <p>{{ isLoading ? 'Caricamento...⏳' : '' }}</p>
+        </div>
+        
         </div>
 

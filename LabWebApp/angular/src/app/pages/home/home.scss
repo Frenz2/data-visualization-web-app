@@ -5,7 +5,7 @@
   margin: 3rem auto;
   padding: 2rem;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.85); /* bianco trasparente effetto glass */
+  background: rgba(255, 255, 255, 0.783); /* bianco trasparente effetto glass */
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(10px); /* effetto vetro */
   display: flex;
@@ -29,7 +29,7 @@
 }
 
 .card {
-  background: #fff;
+  background: #f9f9f9;
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -117,7 +117,4 @@ summary {
 .back-link:hover {
   text-decoration: underline;
 }
-
-
-
 

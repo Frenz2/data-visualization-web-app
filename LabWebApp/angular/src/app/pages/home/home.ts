@@ -65,7 +65,6 @@ startProcess() {
 
   console.log('Avvio processo:', this.selectedProcess);
 
-  // qui potrai chiamare il microservizio corrispondente
 }
 
 

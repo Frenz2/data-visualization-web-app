@@ -34,7 +34,7 @@ export class FileUploader {
     if (target.files && target.files.length) {
       this.fileSelected = target.files[0];
       this.fileUploaded.emit(this.fileSelected);
-      if (this.selectedProcess === 'Whisper') {
+      if (this.selectedProcess === 'Speech-To-Text') {
       this.fileAudioDuration = await this.getAudioDuration(this.fileSelected);
     } else {
       this.fileAudioDuration = null; // nessuna durata per altri servizi

@@ -29,7 +29,7 @@
 
    <section class="card" *ngIf="selectedProcess && !isResultReady && selectedProcess !== 'Text-To-Chart'">
     <h2>Carica file</h2>
-    <p *ngIf="selectedProcess === 'Whisper'">Caricare un file audio per utilizzare il servizio</p>
+    <p *ngIf="selectedProcess === 'Speech-To-Text'">Caricare un file audio per utilizzare il servizio</p>
     <p *ngIf="selectedProcess === 'OCR' || selectedProcess === 'Image-To-Text'">Caricare un file immagine per utilizzare il servizio</p>
     <p *ngIf="selectedProcess === 'Chart-To-Text'">Caricare un file immagine di un grafico per utilizzare il servizio</p>
     
@@ -43,8 +43,8 @@
 
   </section>
 
-  <section class="card" *ngIf="isResultReady && selectedProcess === 'Whisper'">
-    <h2>Risultato Whisper</h2>
+  <section class="card" *ngIf="isResultReady && selectedProcess === 'Speech-To-Text'">
+    <h2>Risultato Speech-To-Text</h2>
     {{transcription}}
   </section>
   <section class="card" *ngIf="isResultReady && selectedProcess === 'OCR'">

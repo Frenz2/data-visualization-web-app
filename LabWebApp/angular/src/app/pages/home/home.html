@@ -32,7 +32,7 @@
     <p *ngIf="selectedProcess === 'Speech-To-Text'">Caricare un file audio per utilizzare il servizio</p>
     <p *ngIf="selectedProcess === 'OCR' || selectedProcess === 'Image-To-Text'">Caricare un file immagine per utilizzare il servizio</p>
     <p *ngIf="selectedProcess === 'Chart-To-Text'">Caricare un file immagine di un grafico per utilizzare il servizio</p>
-    
+
     <app-file-uploader
       (fileUploaded)="onFileUploaded($event)"
       [selectedProcess]="selectedProcess"
@@ -47,19 +47,24 @@
     <h2>Risultato Speech-To-Text</h2>
     {{transcription}}
   </section>
-  <section class="card" *ngIf="isResultReady && selectedProcess === 'OCR'">
-    <h2>Risultato OCR</h2>
-    {{resultOCR}}
-  </section>
-  <section class="card" *ngIf="isResultReady && (selectedProcess === 'Chart-To-Text' || selectedProcess === 'Image-To-Text')">
+
+  <section class="card" *ngIf="isResultReady && (selectedProcess === 'Chart-To-Text' || selectedProcess === 'Image-To-Text'|| selectedProcess === 'OCR')">
     <h2 *ngIf="selectedProcess === 'Chart-To-Text'">Risultato Chart-To-Text</h2>
     <h2 *ngIf="selectedProcess === 'Image-To-Text'">Risultato Image-To-Text</h2>
+    <h2 *ngIf="selectedProcess === 'OCR'">Risultato OCR</h2>
     <!-- IMMAGINE -->
     <div class="image-preview" *ngIf="uploadedImageUrl">
       <img [src]="uploadedImageUrl" alt="Immagine caricata" />
     </div>
+    <div *ngIf="selectedProcess === 'OCR'">
+      <h3>📄 Testo estratto</h3>
+      <p class="result-text">
+        {{ resultOCR }}
+      </p>
+    </div>
 
     <!-- DROPDOWN TESTI -->
+    <div *ngIf="selectedProcess !== 'OCR'">
     <details>
       <summary>📄 Descrizione (Italiano)</summary>
       <p class="result-text">
@@ -78,8 +83,8 @@
         {{ summaryIT }}
       </p>
     </details>
+    </div>
 
-    
 
 
   </section>
